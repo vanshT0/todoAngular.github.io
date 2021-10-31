@@ -9,12 +9,13 @@
     <div class="add-todo-box">
 
 
-        <form #form ="ngForm" (ngSubmit)="onFormSubmit()"> 
+        <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
             <h2 class="title is-5">New Todo</h2>
 
-            <div class="field is-grouped">
+            <div class="field is-grouped" style="margin: 0;">
                 <p class="control is-expanded">
-                    <input class="input" type="text" placeholder="Type your todo here">
+                    <input ngModel #todoTextField="ngModel" required name="text" class="input" type="text"
+                        placeholder="Type todo text here ...">
                 </p>
                 <p class="control">
                     <button type="submit" class="button alt-gradient-button">
@@ -23,6 +24,12 @@
                     </button>
                 </p>
             </div>
+
+            <div *ngIf="todoTextField.invalid && showValidationErrors">
+
+                <p class="help is-danger" *ngIf="todoTextField.invalid">Please enter a Todo</p>
+            </div>
+
         </form>
 
     </div>
@@ -32,59 +39,10 @@
     <div class="container">
         <div class="todo-list">
 
-            <div class="todo-item " *ngFor="let todo of todos" [class.completed]="todo.completed">
-
-                <div class="check-box">
-                    <i class="material-icons">check</i>
-
-                </div>
-
-                <div class="todo-text">
-                    {{todo.text}}
-                </div>
-                <div class="todo-controls-box">
-                    <div class="todo-control-button">
-                        <i class="material-icons">
-                            edit
-                        </i>
-                    </div>
-                    <div class="todo-control-button is-danger">
-                        <i class="material-icons">
-                            delete
-                        </i>
-                    </div>
-                </div>
+            <app-todo-item *ngFor="let todo of todos" [todo]="todo" (todoClicked)="toggleCompleted(todo)" (editClicked)="editTodo(todo)">
+            </app-todo-item>
 
 
-            </div>
-
-            <!-- <div class="todo-item ">
-
-                <div class="check-box">
-                    <i class="material-icons">check</i>
-
-                </div>
-
-                <div class="todo-text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quis atque, aperiam numquam
-
-                </div>
-
-                <div class="todo-controls-box">
-                    <div class="todo-control-button">
-                        <i class="material-icons">
-                            edit
-                        </i>
-                    </div>
-                    <div class="todo-control-button is-danger">
-                        <i class="material-icons">
-                            delete
-                        </i>
-                    </div>
-                </div>
-
-
-            </div> -->
         </div>
     </div>
 </section>
