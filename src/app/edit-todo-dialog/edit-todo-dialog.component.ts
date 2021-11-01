@@ -15,6 +15,7 @@ export class EditTodoDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public todo: Todo) { }
 
   ngOnInit(): void {
+    
   }
 
   close() {

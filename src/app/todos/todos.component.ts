@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { DeleteTodoDialogComponent } from '../delete-todo-dialog/delete-todo-dialog.component';
 import { EditTodoDialogComponent } from '../edit-todo-dialog/edit-todo-dialog.component';
 import { DataService } from '../shared/data.service';
 import { Todo } from '../shared/todo.model';
+
 
 @Component({
   selector: 'app-todos',
@@ -51,7 +53,11 @@ export class TodosComponent implements OnInit {
   }
   deleteTodo(todo: Todo) {
     const index = this.todos.indexOf(todo)
-    this.dataService.deleteTodo(index)
+    let dialogRef = this.dialog.open(DeleteTodoDialogComponent, {
+      width: '700px',
+      data: todo
+    })
+    // this.dataService.deleteTodo(index)
   }
 
 }

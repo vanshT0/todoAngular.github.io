@@ -1,0 +1,18 @@
+<h1 class="title">Are you sure you want to delete the Todo ?</h1>
+<div mat-dialog-content>
+
+    <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+    
+        <div class="field is-grouped is-grouped-right">
+            <div class="control">
+                <button type="button" class="button is-light" (click)="close()">Cancel</button>
+            </div>
+
+            <div class="control">
+                <button type="button" class="button is-danger" (click)="deleteTodo(todo)">Delete</button>
+
+            </div>
+        </div>
+    </form>
+
+</div>

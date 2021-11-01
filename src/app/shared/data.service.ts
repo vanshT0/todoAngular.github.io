@@ -18,7 +18,9 @@ export class DataService {
   }
 
   addTodo(todo: Todo) {
+
     this.todos.push(todo)
+    
   }
 
   updateTodo(index: number, updatedTodo: Todo) {
